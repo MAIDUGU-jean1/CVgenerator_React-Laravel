@@ -3,9 +3,9 @@ import "./styles/App.css";
 import EditSide from "./components/editSide";
 import CVside from "./components/CVside";
 import html2pdf from "html2pdf.js";
-// import { Route, Routes } from 'react-router-dom';
-// import Register from "./components/Register";
-// import Login from "./components/Login";
+import { Route, Routes } from 'react-router-dom';
+import Register from "./components/Register";
+import Login from "./components/Login";
 
 
 
@@ -127,10 +127,10 @@ export default function App() {
         setWorkList={setWorkList}
       />
     </div>
-    {/* <Routes>
+    <Routes>
       <Route path="/register" element={<Register/>}/>
       <Route path="/login" element={<Login/>}/>
-    </Routes> */}
+    </Routes>
     </>
   );
 }

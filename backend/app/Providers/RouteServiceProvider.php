@@ -2,43 +2,45 @@
 
 namespace App\Providers;
 
-use Illuminate\Cache\RateLimiting\Limit;
-use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 
 class RouteServiceProvider extends ServiceProvider
 {
     /**
-     * The path to the "home" route for your application.
+     * This namespace is applied to your controller routes.
+     *
+     * In Laravel 8+, controller route groups are no longer automatically prefixed with a namespace.
      */
-    public const HOME = '/home';
+    protected $namespace = 'App\Http\Controllers';
 
     /**
      * Define your route model bindings, pattern filters, etc.
      */
     public function boot(): void
     {
-        $this->configureRateLimiting();
+        parent::boot();
 
-        $this->routes(function () {
-            Route::middleware('api')
-                ->prefix('api')
-                ->group(base_path('routes/api.php'));
-
-            Route::middleware('web')
-                ->group(base_path('routes/web.php'));
-        });
+        // Example of route model binding (optional)
+        // Route::model('user', \App\Models\User::class);
     }
 
     /**
-     * Configure the rate limiters for the application.
+     * Define the routes for the application.
      */
-    protected function configureRateLimiting(): void
+    public function map(): void
     {
-        RateLimiter::for('api', function (Request $request) {
-            return Limit::perMinute(60)->by($request->user()?->id ?: $request->ip());
-        });
+        $this->mapApiRoutes();
+    }
+
+    /**
+     * Define the "api" routes for the application.
+     */
+    protected function mapApiRoutes(): void
+    {
+        Route::prefix('api')
+            ->middleware('api')
+            ->namespace($this->namespace) // Optional in Laravel 8+, needed if you want namespace-based routing
+            ->group(base_path('routes/api.php'));
     }
 }

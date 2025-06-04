@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import './auth.css';
 
 const Login = () => {
   const [formData, setFormData] = useState({ email: '', password: '' });
-
+  const [error, setError] = useState(null)
   const handleChange = (e) => {
     const {name, value} = e.target;
       setFormData({
@@ -12,11 +13,38 @@ const Login = () => {
     });
   }
 
-  const handleSubmit = e => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
-    console.log(formData);
-    // Later: send to Laravel
-  };
+    const {email, password} = formData;
+    if (email && password ) {
+      
+
+    if (!email || !password) {
+      console.log('Please fill in all fields');
+      setError('Please fill in all fields');
+    return;
+  }
+
+    try {
+      const response = await axios.post('http://localhost:8000/api/login', {
+        email,
+        password
+      });
+
+      const token = response.data.token;
+
+      if (token) {
+        localStorage.setItem('token', token);
+        console.log('Token stored in local storage:', token);
+      }
+
+      console.log('Login successful:', response.data);
+      } catch (error) {
+        console.error('Error during login:', error);
+        setError('Invalid email or password');
+      }
+    }
+  }
 
   return (
     <div className="auth-container">
