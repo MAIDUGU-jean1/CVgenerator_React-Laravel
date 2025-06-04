@@ -1,0 +1,178 @@
+.app {
+  max-width: 100vw;
+  min-height: 90vh;
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  padding: 35px 120px 10px 120px;
+  background-color: var(--backgroundColor);
+}
+.appChild {
+  flex: 1;
+  font-family: var(--mainFont);
+}
+/* CV Side */
+.cvSide {
+  min-height: 950px;
+  box-shadow: 0px 0px 16px 5px rgba(0, 0, 0, 0.1);
+}
+/* Edit Side */
+.appChild {
+  flex: 1;
+  background-color: rgb(255, 255, 255);
+}
+button {
+  cursor: pointer;
+}
+h2 {
+  color: var(--otherColor);
+  font-weight: 500;
+  font-size: 25px;
+}
+.edit-side {
+  display: flex;
+  flex-grow: 1;
+  flex-wrap: wrap;
+  gap: 20px;
+  max-width: 750px;
+  height: fit-content;
+  background-color: var(--backgroundColor);
+}
+
+.sideBar {
+  flex-grow: 1;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 10px;
+  border-radius: 8px;
+  background-color: white;
+  gap: 5px;
+}
+/* .sideBar-btn {
+  border: none;
+  border-radius: 8px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  font-weight: 500;
+  font-size: 1rem;
+  background-color: var(--backgroundColor);
+} */
+.form-fields {
+  background-color: transparent;
+  flex-grow: 999;
+  min-width: 150px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding-top: 0;
+}
+.item {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5px;
+}
+
+/* PERSONAL INFO FORM  and underline transition*/
+.personal-info {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background-color: white;
+  padding: 10px 20px 20px 20px;
+  border-radius: 8px;
+}
+.text-inputs {
+  border: none;
+  padding-left: 10px;
+  background: none;
+  height: 30px;
+  outline: none;
+}
+.item {
+  position: relative;
+}
+.item:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 2px;
+  width: 100%;
+  background-color: lightgray;
+  transform: scaleX(0);
+  transform-origin: bottom right;
+  transition: transform 0.3s ease-out;
+}
+.item:hover:after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+.entry-label {
+  font-weight: 500;
+}
+
+/* DROPDOWN FORMS */
+.tab {
+  height: 75px;
+  background-color: #fff;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-left: 30px;
+  padding-right: 30px;
+  gap: 10px;
+  cursor: pointer;
+  border-radius: 8px;
+  font-size: 20px;
+  font-weight: bold;
+}
+.expand {
+  margin-left: auto;
+  transform: rotate(0);
+  transition: transform 0.3s ease-out;
+}
+.rotate {
+  transform: rotate(180deg);
+}
+
+/* Save and Cancel Buttons */
+.save-cancel {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+}
+.save-cancel-btn {
+  border: none;
+  border-radius: 8px;
+  padding: 10px;
+  width: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  font-weight: 600;
+  font-size: 1rem;
+  background-color: rgb(245, 233, 233);
+}
+.save-btn {
+  color: #fff;
+  background-color: var(--otherColor);
+  transition: background-color 0.25s ease-out;
+}
+.save-btn:hover {
+  background-color: var(--primaryColor);
+}
+.cancel {
+  background-color: var(--backgroundColor);
+  transition: background-color 0.25s ease-out;
+}
+.cancel:hover {
+  background-color: lightgray;
+}

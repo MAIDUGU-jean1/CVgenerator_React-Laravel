@@ -1,0 +1,55 @@
+.personal-info-holder {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(225, 232, 255);
+  gap: 10px;
+  height: fit-content;
+  padding: 3rem 0 2rem 0;
+  width: 100%;
+}
+
+.details {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: fit-content;
+  gap: 15px;
+  justify-content: center;
+  align-items: center;
+}
+
+/* INFO COMPONENT */
+.info-container {
+  padding: 0 56px 0 56px;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 30px;
+}
+.header-container {
+  width: 100%;
+  background-color: var(--backgroundColor);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.grid-info {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  height: fit-content;
+}
+.job-description {
+  margin-top: 2.5px;
+}
+.personal-detail {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2px;
+}
+.detail-icon {
+  font-size: 20px;
+}
