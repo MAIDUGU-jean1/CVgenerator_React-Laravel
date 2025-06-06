@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Psy\TabCompletion\Matcher\FunctionsMatcher;
 
 class authController extends Controller
 {
@@ -49,6 +50,23 @@ class authController extends Controller
             'token' => $token,
         ]);
     }
+
+
+    public function getAllusers(Request $request){
+        $token = $request->bearerToken();
+
+        $user = User::where('remember_token', $token)->first();
+        if (!$user) {
+            return response()->json([
+                'message' => 'Unauthorize access'
+            ]);
+        }
+        return response()->json([
+            'message'=> 'User Found ',
+            'user' => $user,
+        ]);
+    }
+
 
     //
 }

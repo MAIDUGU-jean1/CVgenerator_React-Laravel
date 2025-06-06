@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./styles/App.css";
 import EditSide from "./components/editSide";
 import CVside from "./components/CVside";
@@ -6,6 +6,7 @@ import html2pdf from "html2pdf.js";
 import { Route, Routes } from 'react-router-dom';
 import Register from "./components/Register";
 import Login from "./components/Login";
+import axios from "axios";
 
 
 
@@ -47,7 +48,7 @@ export default function App() {
   const [curEmail, setEmail] = useState("maidugu@gmail.com");
   const [curPhone, setPhone] = useState("682-090-879");
   const [curAddress, setAddress] = useState("Bamenda, Northwest Region");
-
+  const [data, setData] = useState(null);
   // State for the Array of Objects
   const [schoolList, setSchoolList] = useState(schools);
   const [workList, setWorkList] = useState(workExperienceList);
@@ -68,7 +69,21 @@ export default function App() {
 
   html2pdf().set(opt).from(element).save();
 }
+  const fetchData = async() => {
+    try {
+        await axios.get('http://127.0.0.1:8000/api/user').then((response)=>{
+          console.log(response.data);
+          setData(response.data);
+        });
 
+    } catch (error) {
+      console.error('error fetching', error);
+    }
+  }
+
+  useEffect(() =>{
+    fetchData();
+  }, []);
 
 
   return (
